@@ -15,9 +15,23 @@ SquareMatrix::SquareMatrix(const RectangularMatrix& other) : RectangularMatrix(o
 }
 
 SquareMatrix SquareMatrix::operator*(const double scalar) const {
-    RectangularMatrix temp = RectangularMatrix::operator*(scalar);
-    SquareMatrix result(temp);
-    return result;
+    RectangularMatrix result = RectangularMatrix::operator*(scalar);
+    return SquareMatrix(result);
+}
+
+SquareMatrix SquareMatrix::operator+(const SquareMatrix& other) const {
+    RectangularMatrix result = RectangularMatrix::operator+(other);
+    return SquareMatrix(result);
+}
+
+SquareMatrix SquareMatrix::operator-(const SquareMatrix& other) const {
+    RectangularMatrix result = RectangularMatrix::operator-(other);
+    return SquareMatrix(result);
+}
+
+SquareMatrix SquareMatrix::operator*(const SquareMatrix& other) const {
+    RectangularMatrix result = RectangularMatrix::operator*(other);
+    return SquareMatrix(result);
 }
 
 // Оператор присваивания

@@ -52,25 +52,29 @@ RectangularMatrix& RectangularMatrix::operator=(const RectangularMatrix& other) 
     if (this->rows != other.rows || this->cols != other.cols) {
         throw "Matrices have different sizes";
     }
-    // if (this->rows != other.rows || this->cols != other.cols) {
-    //     for (int i = 0; i < this->rows; i++) {
-    //         delete[] this->data[i];
-    //     }
-    //     delete[] this->data;
-    //     this->rows = other.rows;
-    //     this->cols = other.cols;
-    //     this->data = new double*[this->rows];
-    //     for (int i = 0; i < this->rows; i++) {
-    //         this->data[i] = new double[this->cols];
-    //     }
-    // }
+
+    // Освобождаем старую память
+    for (int i = 0; i < this->rows; i++) {
+        delete[] this->data[i];
+    }
+    delete[] this->data;
+
+    // Выделяем новую память
+    this->data = new double*[this->rows];
+    for (int i = 0; i < this->rows; i++) {
+        this->data[i] = new double[this->cols];
+    }
+
+    // Копируем данные
     for (int i = 0; i < this->rows; i++) {
         for (int j = 0; j < this->cols; j++) {
             this->data[i][j] = other.data[i][j];
         }
     }
+
     return *this;
 }
+
 
 // Оператор сложения матриц
 RectangularMatrix RectangularMatrix::operator+(const RectangularMatrix& other) const {

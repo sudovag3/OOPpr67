@@ -1,5 +1,6 @@
 #include <iostream>
 #include "recmatrix.h"
+#include "sqmatrix.h"
 
 int main() {
     // Создание матрицы 3х3 с начальными значениями 0
@@ -39,25 +40,55 @@ int main() {
     std::cout << "Matrix 3:" << std::endl;
     std::cout << matrix3 << std::endl;
 
-    // Сложение матриц
-    std::cout << "Matrix 1 + Matrix 2:" << std::endl;
-    RectangularMatrix matrix_sum = matrix1 + matrix2;
-    std::cout << matrix_sum << std::endl;
+    // Создание SquareMatrix
+    SquareMatrix sq_matrix1(3);
+    sq_matrix1[0][0] = 2;
+    sq_matrix1[0][1] = 4;
+    sq_matrix1[0][2] = 8;
+    sq_matrix1[1][0] = 10;
+    sq_matrix1[1][1] = 2;
+    sq_matrix1[1][2] = 4;
+    sq_matrix1[2][0] = 8;
+    sq_matrix1[2][1] = 10;
+    sq_matrix1[2][2] = 10;
 
-    // Вычитание матриц
-    std::cout << "Matrix 2 - Matrix 1:" << std::endl;
-    RectangularMatrix matrix_diff = matrix2 - matrix1;
-    std::cout << matrix_diff << std::endl;
+    SquareMatrix sq_matrix2(3);
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            sq_matrix2[i][j] = 1;
+        }
+    }
 
-    // Умножение матриц
-    std::cout << "Matrix 1 * Matrix 3:" << std::endl;
-    RectangularMatrix matrix_prod = matrix1 * matrix3;
-    std::cout << matrix_prod << std::endl;
+    // Вывод SquareMatrix на экран
+    std::cout << "SquareMatrix 1:" << std::endl;
+    std::cout << sq_matrix1 << std::endl;
+    std::cout << "SquareMatrix 2:" << std::endl;
+    std::cout << sq_matrix2 << std::endl;
 
-    // Умножение матрицы на скаляр
-    std::cout << "Matrix 2 * 2:" << std::endl;
-    RectangularMatrix matrix_scalar_prod = matrix2 * 2;
-    std::cout << matrix_scalar_prod << std::endl;
+    // Операции с SquareMatrix
+    std::cout << "SquareMatrix 1 + SquareMatrix 2:" << std::endl;
+    SquareMatrix sq_matrix_sum = sq_matrix1 + sq_matrix2;
+    std::cout << sq_matrix_sum << std::endl;
+
+    std::cout << "SquareMatrix 1 - SquareMatrix 2:" << std::endl;
+    SquareMatrix sq_matrix_diff = sq_matrix1 - sq_matrix2;
+    std::cout << sq_matrix_diff << std::endl;
+
+    std::cout << "SquareMatrix 1 * SquareMatrix 2:" << std::endl;
+    SquareMatrix sq_matrix_prod = sq_matrix1 * sq_matrix2;
+    std::cout << sq_matrix_prod << std::endl;
+
+    std::cout << "SquareMatrix 1 * 2 (scalar):" << std::endl;
+    SquareMatrix sq_matrix_scalar_prod = sq_matrix1 * 2;
+    std::cout << sq_matrix_scalar_prod << std::endl;
+
+    std::cout << "Determinant of SquareMatrix 1: " << std::endl;
+    double sq_matrix1_det = sq_matrix1.determinant();
+    std::cout << sq_matrix1_det << std::endl;
+
+    std::cout << "Cofactor of SquareMatrix 1 (1, 1): " << std::endl;
+    double sq_matrix1_cofactor = sq_matrix1.cofactor(1, 1);
+    std::cout << sq_matrix1_cofactor << std::endl;
 
     return 0;
 }

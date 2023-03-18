@@ -15,6 +15,10 @@ public:
     //Оператор присваивания
     SquareMatrix& operator=(const SquareMatrix& other);
 
+    SquareMatrix operator+(const SquareMatrix& other) const;
+    SquareMatrix operator-(const SquareMatrix& other) const;
+    SquareMatrix operator*(const SquareMatrix& other) const;
+
     // Обратная матрица
     SquareMatrix inverse() const;
     double determinant() const;
