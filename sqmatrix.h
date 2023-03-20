@@ -18,6 +18,7 @@ public:
     SquareMatrix operator+(const SquareMatrix& other) const;
     SquareMatrix operator-(const SquareMatrix& other) const;
     SquareMatrix operator*(const SquareMatrix& other) const;
+    SquareMatrix operator/(const double scalar) const;
 
     // Обратная матрица
     SquareMatrix inverse() const;

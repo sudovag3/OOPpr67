@@ -30,6 +30,8 @@ public:
     
     //Оператор присваивания
     RectangularMatrix& operator=(const RectangularMatrix& other);
+
+    RectangularMatrix operator/(const double scalar) const;
     
     // Метод получения строки матрицы с заданным номером 
     double* operator[](const int row) const;

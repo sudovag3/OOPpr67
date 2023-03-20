@@ -48,11 +48,7 @@ RectangularMatrix& RectangularMatrix::operator=(const RectangularMatrix& other) 
     if (this == &other) {
         return *this;
     }
-
-    if (this->rows != other.rows || this->cols != other.cols) {
-        throw "Matrices have different sizes";
-    }
-
+    
     // Освобождаем старую память
     for (int i = 0; i < this->rows; i++) {
         delete[] this->data[i];
@@ -60,6 +56,9 @@ RectangularMatrix& RectangularMatrix::operator=(const RectangularMatrix& other) 
     delete[] this->data;
 
     // Выделяем новую память
+    this->rows = other.rows;
+    this->cols = other.cols;
+
     this->data = new double*[this->rows];
     for (int i = 0; i < this->rows; i++) {
         this->data[i] = new double[this->cols];
@@ -126,6 +125,17 @@ RectangularMatrix RectangularMatrix::operator*(const int scalar) const {
     for (int i = 0; i < this->rows; i++) {
         for (int j = 0; j < this->cols; j++) {
             result.data[i][j] = this->data[i][j] * scalar;
+        }
+    }
+    return result;
+}
+
+
+RectangularMatrix RectangularMatrix::operator/(const double scalar) const {
+    RectangularMatrix result(this->rows, this->cols);
+    for (int i = 0; i < this->rows; i++) {
+        for (int j = 0; j < this->cols; j++) {
+            result[i][j] = this->data[i][j] / scalar;
         }
     }
     return result;

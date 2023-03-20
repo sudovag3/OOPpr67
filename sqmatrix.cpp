@@ -12,6 +12,11 @@ SquareMatrix::SquareMatrix(const RectangularMatrix& other) : RectangularMatrix(o
     if (other.rows != other.cols) {
         throw std::invalid_argument("Cannot convert a non-square RectangularMatrix to a SquareMatrix");
     }
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            data[i][j] = other[i][j];
+        }
+    }
 }
 
 SquareMatrix SquareMatrix::operator*(const double scalar) const {
@@ -40,6 +45,11 @@ SquareMatrix& SquareMatrix::operator=(const SquareMatrix& other) {
     return *this;
 }
 
+SquareMatrix SquareMatrix::operator/(const double scalar) const {
+    RectangularMatrix result = RectangularMatrix::operator/(scalar);
+    return SquareMatrix(result);
+}
+
 
 // Обратная матрица
 SquareMatrix SquareMatrix::inverse() const {
@@ -65,7 +75,7 @@ SquareMatrix SquareMatrix::inverse() const {
     }
 
     // Делим матрицу алгебраических дополнений на определитель
-    SquareMatrix inverse = adj * (1.0 / det);
+    SquareMatrix inverse = adj / det;
     return inverse;
 }
 
